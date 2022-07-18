@@ -34,6 +34,18 @@ client.once("ready", () => {
 
 });
 
+client.on("interactionCreate", async(interaction) => {
+
+    if (interaction.isButton()) {
+        if (interaction.customId === "750") {
+            interaction.reply("Je hebt op 750 geklikt")
+        }
+
+
+    }
+    
+});
+
 client.on("messageCreate", async message => {
 
     if (message.author.bot) return;

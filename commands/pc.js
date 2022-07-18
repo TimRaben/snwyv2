@@ -5,7 +5,7 @@ module.exports.run = async (client, message, args) => {
     const row = new discord.MessageActionRow().addComponents(
 
         new discord.MessageButton()
-        .setCustomId("€750,-")
+        .setCustomId("750")
         .setLabel("€750,-")
         .setStyle("LINK")
 
