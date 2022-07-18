@@ -72,7 +72,7 @@ module.exports.run = async (client, message, args) => {
 
     ) 
 
-    await message.channel.send({
+    message.channel.send({
         components: [linkrow, test, test2],
         embed: embed
     })
