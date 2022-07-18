@@ -6,14 +6,14 @@ module.exports.run = async (client, message, args) => {
 
         new discord.MessageButton()
         .setCustomId('750')
+        .setURL('https://snwy.jouwweb.nl/')
         .setLabel('€750,-')
         .setStyle('LINK')
-        .setURL('https://snwy.jouwweb.nl/')
 
 
     ); 
 
-    message.channel.send({content: "test bericht", components: [row] });
+    message.channel.send({content: 'test bericht', components: [row] });
 
 }
 
