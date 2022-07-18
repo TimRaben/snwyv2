@@ -2,6 +2,12 @@ const discord = require("discord.js");
 
 module.exports.run = async (client, message, args) => {
 
+    const embed = new discord.MessageEmbed()
+        .setTitle("PC Builds - Prijzen")
+        .setColor("PURPLE")
+        .setDescription("Klik hieronder op de prijzen van de PC Builds waar jij naar opzoek bent, we hebben 6 geld bedragen voor de beste PC voor het bepaalde bedrag.")
+        .setFooter(args[1]);
+
     const row = new discord.MessageActionRow().addComponents(
 
         new discord.MessageButton()
@@ -23,7 +29,7 @@ module.exports.run = async (client, message, args) => {
         new discord.MessageButton()
         .setURL('https://www.megekko.nl/wl/N73A4GFD')
         .setEmoji('💲')
-        .setLabel('750,-')
+        .setLabel('€750,-')
         .setStyle('LINK')
     )
     .addComponents(
@@ -68,7 +74,7 @@ module.exports.run = async (client, message, args) => {
     ) 
 
     await message.reply({
-        content: 'Zeker?',
+        content: embed,
         components: [linkrow, test, test2]
     })
 
