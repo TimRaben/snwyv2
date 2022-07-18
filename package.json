@@ -1,0 +1,17 @@
+{
+  "name": "snwy-v13",
+  "version": "1.0.0",
+  "description": "Snwy Discord BOT ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "snwy"
+  ],
+  "author": "Tim Raben",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^13.6.0"
+  }
+}
