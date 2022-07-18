@@ -5,17 +5,26 @@ module.exports.run = async (client, message, args) => {
     const row = new discord.MessageActionRow().addComponents(
 
         new discord.MessageButton()
-        .setURL('https://snwy.jouwweb.nl/')
-        .setCustomId('750')
-        .setLabel('€750,-')
-        .setStyle('LINK')
+        .setCustomId('ban_2')
+        .setEmoji('💻')
+        .setLabel('Confirm')
+        .setStyle('SUCCESS')
+    )
+    .addComponents(
+        new discord.MessageButton()
+            .setCustomId('test_1')
+            .setLabel('Cancel')
+            .setStyle('DANGER')
 
+    ) 
 
-    ); 
-
-    message.channel.send({content: "test", components: [row] });
+    await message.reply({
+        content: 'Zeker?',
+        components: [row]
+    })
 
 }
+
 
 module.exports.help = {
     name: "pc"
