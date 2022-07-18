@@ -13,7 +13,7 @@ module.exports.run = async (client, message, args) => {
 
     ); 
 
-    message.channel.send({content: '750', components: [row] });
+    message.channel.send({content: "test", components: [row] });
 
 }
 
