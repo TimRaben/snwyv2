@@ -8,6 +8,7 @@ module.exports.run = async (client, message, args) => {
         .setCustomId("750")
         .setLabel("€750,-")
         .setStyle("LINK")
+        .setURL("https://snwy.jouwweb.nl/")
 
 
     ); 
