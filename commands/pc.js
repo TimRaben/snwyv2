@@ -23,22 +23,22 @@ module.exports.run = async (client, message, args) => {
         new discord.MessageButton()
         .setURL('https://www.megekko.nl/wl/N73A4GFD')
         .setEmoji('💲')
-        .setLabel('750')
+        .setLabel('750,-')
         .setStyle('LINK')
     )
     .addComponents(
         new discord.MessageButton()
         .setURL('https://www.megekko.nl/wl/R6YP59ET')  
         .setEmoji('💲')
-        .setLabel('1000')
+        .setLabel('€1.000')
         .setStyle('LINK')
 
     ) 
-    .addComponents(
+    const test = new discord.MessageActionRow().addComponents(
         new discord.MessageButton()
         .setURL('https://www.megekko.nl/wl/CHJ9X64S')  
         .setEmoji('💲')
-        .setLabel('1500')
+        .setLabel('€1.500')
         .setStyle('LINK')
 
     ) 
@@ -46,15 +46,15 @@ module.exports.run = async (client, message, args) => {
         new discord.MessageButton()
         .setURL('https://www.megekko.nl/wl/4FXQ9N2Z')  
         .setEmoji('💲')
-        .setLabel('2000')
+        .setLabel('€2.000')
         .setStyle('LINK')
 
     )
-    .addComponents(
+    const test2 = new discord.MessageActionRow().addComponents(
         new discord.MessageButton()
         .setURL('https://www.megekko.nl/wl/6DBXR78G')  
         .setEmoji('💲')
-        .setLabel('2500')
+        .setLabel('€2.500')
         .setStyle('LINK')
 
     )
@@ -62,14 +62,14 @@ module.exports.run = async (client, message, args) => {
         new discord.MessageButton()
         .setURL('https://www.megekko.nl/wl/M3A7PYCZ')  
         .setEmoji('💲')
-        .setLabel('3000')
+        .setLabel('€3.000')
         .setStyle('LINK')
 
     ) 
 
     await message.reply({
-        content: "zeker",
-        components: [linkrow]
+        content: 'Zeker?',
+        components: [linkrow, test, test2]
     })
 
 }
