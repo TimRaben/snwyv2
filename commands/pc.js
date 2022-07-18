@@ -17,10 +17,19 @@ module.exports.run = async (client, message, args) => {
             .setStyle('DANGER')
 
     ) 
+    
+    const linkrow = new discord.MessageActionRow().addComponents(
+
+        new discord.MessageButton()
+        .setURL('https://www.megekko.nl/wl/N73A4GFD')
+        .setEmoji('💻')
+        .setLabel('750')
+        .setStyle('LINK')
+    )
 
     await message.reply({
         content: 'Zeker?',
-        components: [row]
+        components: [row, linkrow]
     })
 
 }
