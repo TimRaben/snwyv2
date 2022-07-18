@@ -5,8 +5,7 @@ module.exports.run = async (client, message, args) => {
     const embed = new discord.MessageEmbed()
         .setTitle("PC Builds - Prijzen")
         .setColor("PURPLE")
-        .setDescription("Klik hieronder op de prijzen van de PC Builds waar jij naar opzoek bent, we hebben 6 geld bedragen voor de beste PC voor het bepaalde bedrag.")
-        .setFooter(args[1]);
+        .setDescription("Klik hieronder op de prijzen van de PC Builds waar jij naar opzoek bent, we hebben 6 geld bedragen voor de beste PC voor het bepaalde bedrag.");
 
     const row = new discord.MessageActionRow().addComponents(
 
