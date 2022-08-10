@@ -2,11 +2,6 @@ const discord = require("discord.js");
 
 module.exports.run = async (client, message, args) => {
 
-    const embed = new discord.MessageEmbed()
-        .setTitle("PC Builds - Prijzen")
-        .setColor("PURPLE")
-        .setDescription("Klik hieronder op de prijzen van de PC Builds waar jij naar opzoek bent, we hebben 6 geld bedragen voor de beste PC voor het bepaalde bedrag.");
-
     const row = new discord.MessageActionRow().addComponents(
 
         new discord.MessageButton()
@@ -26,14 +21,14 @@ module.exports.run = async (client, message, args) => {
     const linkrow = new discord.MessageActionRow().addComponents(
 
         new discord.MessageButton()
-        .setURL('https://www.megekko.nl/wl/N73A4GFD')
+        .setURL('https://nl.pcpartpicker.com/list/PhdtLs')
         .setEmoji('💲')
         .setLabel('€750,-')
         .setStyle('LINK')
     )
     .addComponents(
         new discord.MessageButton()
-        .setURL('https://www.megekko.nl/wl/R6YP59ET')  
+        .setURL('https://nl.pcpartpicker.com/list/dywLd9')  
         .setEmoji('💲')
         .setLabel('€1.000')
         .setStyle('LINK')
@@ -41,7 +36,7 @@ module.exports.run = async (client, message, args) => {
     ) 
     const test = new discord.MessageActionRow().addComponents(
         new discord.MessageButton()
-        .setURL('https://www.megekko.nl/wl/CHJ9X64S')  
+        .setURL('https://nl.pcpartpicker.com/list/zJPhv3')  
         .setEmoji('💲')
         .setLabel('€1.500')
         .setStyle('LINK')
@@ -49,7 +44,7 @@ module.exports.run = async (client, message, args) => {
     ) 
     .addComponents(
         new discord.MessageButton()
-        .setURL('https://www.megekko.nl/wl/4FXQ9N2Z')  
+        .setURL('https://nl.pcpartpicker.com/list/YT9XVw')  
         .setEmoji('💲')
         .setLabel('€2.000')
         .setStyle('LINK')
@@ -57,7 +52,7 @@ module.exports.run = async (client, message, args) => {
     )
     const test2 = new discord.MessageActionRow().addComponents(
         new discord.MessageButton()
-        .setURL('https://www.megekko.nl/wl/6DBXR78G')  
+        .setURL('https://nl.pcpartpicker.com/list/DBJqrD')  
         .setEmoji('💲')
         .setLabel('€2.500')
         .setStyle('LINK')
@@ -65,7 +60,7 @@ module.exports.run = async (client, message, args) => {
     )
     .addComponents(
         new discord.MessageButton()
-        .setURL('https://www.megekko.nl/wl/M3A7PYCZ')  
+        .setURL('https://nl.pcpartpicker.com/list/vmKxxs')  
         .setEmoji('💲')
         .setLabel('€3.000')
         .setStyle('LINK')
@@ -81,5 +76,5 @@ module.exports.run = async (client, message, args) => {
 
 
 module.exports.help = {
-    name: "pc"
+    name: "pcsamenstellingen"
 }
