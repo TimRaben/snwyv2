@@ -69,7 +69,6 @@ module.exports.run = async (client, message, args) => {
 
     message.channel.send({
         components: [linkrow, test, test2],
-        embed: embed
     })
 
 }
