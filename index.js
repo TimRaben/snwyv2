@@ -34,7 +34,7 @@ client.once("ready", () => {
 
 });
 
-const suggestionChannel = client.channels.cache.find(c => c.name == "test-development");
+let suggestionChannel = client.channels.cache.find(c => c.name == "test-development");
         if(message.channel == suggestionChannel) {
             if (message.author.bot) return;
             message.delete();
