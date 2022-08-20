@@ -2,19 +2,21 @@ const discord = require("discord.js");
 
 module.exports.run = async (client, message, args) => {
 
-    if (!message.member.permissions.has("BAN_MEMBERS")) return message.reply(":x: **-** Je kan geen collega's verbannen!");
+    if (!message.member.permissions.has("KICK_MEMBERS")) return message.reply(":x: **-** Je kan geen collega's verbannen!");
 
-    if (!message.guild.me.permissions.has("BAN_MEMBERS")) return message.reply(":x: **-** Je hebt niet de juiste machtigingen om iemand te verbannen!");
+    if (!message.guild.me.permissions.has("KICK_MEMBERS")) return message.reply(":x: **-** Je hebt niet de juiste machtigingen om iemand te verbannen!");
 
-    if (!args[1]) return message.reply("Geef een reden op!")
+    if (!args[0]) return message.reply("Gelieve een gebruiker op te geven!");
 
-    var banUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[1]));
+    if (!args[1]) return message.reply("Geef een reden op!");
+
+    var banUser = message.guild.members.cache.get(message.mentions.users.first().id || message.guild.members.get(args[0]).id);
 
     var reason = args.slice(1).join(" ");
 
     if (!banUser) return message.reply(":x: **-** Ik kan deze gebruiker niet vinden, geef een tag of account ID op!");
 
-    if (!banUser.permissions.has("BAN_MEMBERS")) return message.reply(":x: **-** Je kan geen collega's verbannen!");
+    if (!banUser.permissions.has("MANAGE_MESSAGES")) return message.reply(":x: **-** Je kan geen collega's verbannen!");
 
     var embed = new discord.MessageEmbed()
         .setColor("#ff0000")
