@@ -2,15 +2,19 @@ const discord = require("discord.js");
 
 module.exports.run = async (client, message, args) => {
 
-    if (!banUser.roles.cache.some(role => role.name === '🔮 • Staff')) return message.reply("Je kan geen mede collega's verbannen!");
+    if (!message.member.permissions.has("BAN_MEMBERS")) return message.reply(":x: **-** Je kan geen collega's verbannen!");
 
-    if (!member.roles.cache.some(role => role.name === '🔮 • Staff')) return message.reply("Je hebt niet de juiste rechten om iemand te verbannen!");
+    if (!message.guild.me.permissions.has("BAN_MEMBERS")) return message.reply(":x: **-** Je hebt niet de juiste machtigingen om iemand te verbannen!");
+
+    if (!args[1]) return message.reply("Geef een reden op!")
 
     var banUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[1]));
 
-    var reason = args.slice(2).join(" ");
+    var reason = args.slice(1).join(" ");
 
     if (!banUser) return message.reply(":x: **-** Ik kan deze gebruiker niet vinden, geef een tag of account ID op!");
+
+    if (!banUser.permissions.has("BAN_MEMBERS")) return message.reply(":x: **-** Je kan geen collega's verbannen!");
 
     var embed = new discord.MessageEmbed()
         .setColor("#ff0000")
@@ -22,7 +26,7 @@ module.exports.run = async (client, message, args) => {
             **Reden: ** ${reason}`);
 
     var embeduser = new discord.MessageEmbed()
-        .setColor("#ff0000")
+        .setColor("RED")
         .setTitle("Snwy Discord - Ban Systeem")
         .setThumbnail(banUser.user.displayAvatarURL)
         .setTimestamp()
@@ -36,68 +40,60 @@ module.exports.run = async (client, message, args) => {
         .setDescription(`Weet je zeker dat je ${banUser} wilt verbannen?`);
 
 
-    message.channel.send(embedPrompt).then(async msg => {
+        message.channel.send({ embeds: [embedPrompt] }).then(async msg => {
+ 
+            let authorID = message.author.id;
+            let time = 30;
+            let reactions = ["✅", "❌"];
+         
+            // We gaan eerst de tijd * 1000 doen zodat we seconden uitkomen.
+            time *= 1000;
+         
+            // We gaan iedere reactie meegegeven onder de reactie en deze daar plaatsen.
+            for (const reaction of reactions) {
+                await msg.react(reaction);
+            }
+         
+            // Als de emoji de juiste emoji is die men heeft opgegeven en als ook de auteur die dit heeft aangemaakt er op klikt
+            // dan kunnen we een bericht terug sturen.
+            const filter = (reaction, user) => {
+                return reactions.includes(reaction.emoji.name) && user.id === authorID;
+            };
+         
+            // We kijken als de reactie juist is, dus met die filter en ook het aantal keren en binnen de tijd.
+            // Dan kunnen we bericht terug sturen met dat icoontje dat is aangeduid.
+            msg.awaitReactions({ filter, max: 1, time: time }).then(collected => {
+                var emojiDetails = collected.first();
 
-        var emoji = await promptMessage(msg, message.author, 30, ["✅", "❌"]);
+                if (emojiDetails.emoji.name === "✅") {
 
+                    msg.delete()
+                    banUser.ban(reason).catch(err => {
+                        if (err) return message.channel.send(`Error! Er is iets fout gegaan!`);
+                    });
 
-        // We kijken dat het de gebruiker is die het als eerste heeft uitgevoerd.
-        // message.channel.awaitMessages(m => m.author.id == message.author.id,
-        //     { max: 1, time: 30000 }).then(collected => {
+                    banUser.send({ embeds: embeduser })
 
-        //         if (collected.first().content.toLowerCase() == 'yes') {
-        //             message.reply('Kick speler.');
-        //         }
-        //         else
-        //             message.reply('Geanuleerd');
+                    message.channel.send({ embeds: embed });
 
-        //     }).catch(() => {
-        //         message.reply('Geen antwoord na 30 sec, geanuleerd.');
-        //     });
+                } else if (emojiDetails.emoji.name === "❌") {
 
+                    msg.delete();
 
-        if (emoji === "✅") {
+                    message.channel.send("Ban succesvol geannuleerd!").then(msg => {
 
-            msg.delete();
-
-
-            banUser.ban(reason).catch(err => {
-                if (err) return message.channel.send(`:x: **-** Verbanning geannuleerd! FOUT!`);
+                        message.delete()
+                        setTimeout(() => msg.delete(), 5000);
+                    }
+                        )};
+                
+         
+                
             });
-
-            message.reply(embed)
-            banUser.send(embeduser)
-
-        } else if (emoji === "❌") {
-
-            msg.delete();
-
-            message.reply("✅ **-** Actie succesvol geannuleerd!").then(m => m.delete(5000));
-
-        }
-
-    });
+        });
 
 }
-
-// Emojis aan teksten kopellen.
-async function promptMessage(message, author, time, reactions) {
-    // We gaan eerst de tijd * 1000 doen zodat we seconden uitkomen.
-    time *= 1000;
-
-    // We gaan ieder meegegeven reactie onder de reactie plaatsen.
-    for (const reaction of reactions) {
-        await message.react(reaction);
-    }
-
-    // Als de emoji de juiste emoji is die men heeft opgegeven en als ook de auteur die dit heeft aangemaakt er op klikt
-    // dan kunnen we een bericht terug sturen.
-    const filter = (reaction, user) => reactions.includes(reaction.emoji.name) && user.id === author.id;
-
-    // We kijken als de reactie juist is, dus met die filter en ook het aantal keren en binnen de tijd.
-    // Dan kunnen we bericht terug sturen met dat icoontje dat is aangeduid.
-    return message.awaitReactions(filter, { max: 1, time: time }).then(collected => collected.first() && collected.first().emoji.name);
-}
+    
 
 module.exports.help = {
     name: "ban",
