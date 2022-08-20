@@ -66,11 +66,10 @@ module.exports.run = async (client, message, args) => {
                 if (emojiDetails.emoji.name === "✅") {
 
                     msg.delete()
+
                     banUser.ban({reason: reason}).catch(err => {
                         if (err) return message.channel.send(`Error! Er is iets fout gegaan!`);
                     });
-
-                    banUser.send({ embeds: embeduser })
 
                     message.channel.send({ embeds: embed });
 
@@ -80,7 +79,7 @@ module.exports.run = async (client, message, args) => {
 
                     message.channel.send("Ban succesvol geannuleerd!").then(msg => {
 
-                        message.delete()
+                        message.delete();
                         setTimeout(() => msg.delete(), 5000);
                     }
                         )};
