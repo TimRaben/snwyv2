@@ -19,7 +19,7 @@ module.exports.run = async (client, message, args) => {
     if (!banUser.permissions.has("MANAGE_MESSAGES")) return message.reply(":x: **-** Je kan geen collega's verbannen!");
 
     var embed = new discord.MessageEmbed()
-        .setColor("#ff0000")
+        .setColor("RED")
         .setTitle("Snwy Discord - Ban Systeem")
         .setTimestamp()
         .setDescription(`** Geband:** ${banUser} (${banUser.id})
@@ -32,7 +32,7 @@ module.exports.run = async (client, message, args) => {
         .setTimestamp()
         .setDescription(`**Je bent verbannen uit de Snwy Discord!**
                 **Geband door:** ${message.author}
-                **Reden: ** ${reason}\n\n**Wil je terug in onze Server komen? doe dan een unban apply [klik hier](https://discord.gg/KHC4g3umee)`);
+                **Reden: ** ${reason}\n\n**Wil je terug in onze Server komen? doe dan een unban apply`);
 
     var embedPrompt = new discord.MessageEmbed()
     .setTitle("Gelieve te reageren binnen **30** seconden!")       
@@ -67,7 +67,7 @@ module.exports.run = async (client, message, args) => {
 
                 if (emojiDetails.emoji.name === "✅") {
 
-                    msg.delete()
+                    msg.delete();
 
                     banUser.ban({reason: reason}).catch(err => {
                         if (err) return message.channel.send(`Error! Er is iets fout gegaan!`);
