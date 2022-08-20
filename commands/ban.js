@@ -2,9 +2,9 @@ const discord = require("discord.js");
 
 module.exports.run = async (client, message, args) => {
 
-    if (!message.member.hasPermission("MANAGE_GUILD")) return message.reply(":x: **-** Jij bent niet gemachtigd dit commando uit te voeren!");
+    if (!banUser.roles.cache.some(role => role.name === '🔮 • Staff')) return message.reply("Je kan geen mede collega's verbannen!");
 
-    if (!message.guild.me.hasPermission("BAN_MEMBERS")) return message.reply(":x: **-** Geen Permissies!");
+    if (!member.roles.cache.some(role => role.name === '🔮 • Staff')) return message.reply("Je hebt niet de juiste rechten om iemand te verbannen!");
 
     var banUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[1]));
 
