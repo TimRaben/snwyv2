@@ -19,7 +19,6 @@ module.exports.run = async (client, message, args) => {
     var embed = new discord.MessageEmbed()
         .setColor("#ff0000")
         .setTitle("Snwy Discord - Ban Systeem")
-        .setThumbnail(banUser.user.displayAvatarURL)
         .setTimestamp()
         .setDescription(`** Geband:** ${banUser} (${banUser.id})
             **Geband door:** ${message.author}
@@ -28,7 +27,6 @@ module.exports.run = async (client, message, args) => {
     var embeduser = new discord.MessageEmbed()
         .setColor("RED")
         .setTitle("Snwy Discord - Ban Systeem")
-        .setThumbnail(banUser.user.displayAvatarURL)
         .setTimestamp()
         .setDescription(`**Je bent verbannen uit de Snwy Discord!**
                 **Geband door:** ${message.author}
