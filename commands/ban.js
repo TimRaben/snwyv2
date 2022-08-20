@@ -66,7 +66,7 @@ module.exports.run = async (client, message, args) => {
                 if (emojiDetails.emoji.name === "✅") {
 
                     msg.delete()
-                    banUser.ban(reason).catch(err => {
+                    banUser.ban({reason: reason}).catch(err => {
                         if (err) return message.channel.send(`Error! Er is iets fout gegaan!`);
                     });
 
