@@ -34,6 +34,7 @@ module.exports.run = async (bot, message, args) => {
     var embedUser = new discord.MessageEmbed()
         .setTitle("Je bent verbannen uit onze Server...")
         .setDescription(`Je bent helaas verwijderd uit onze Server aangezien je een of meerdere regels hebt overtreden, lees hier onze verdere informatie. \n\n__**Informatie**__\n**Stafflid:** ${message.author}\n**Reden:** ${reason}\n**Datum:** ${datum}\n\nWil jij terug komen in onze Server? doe dan een Unban Verzoeken! [klik hier](https://discord.gg/KHC4g3umee)`)
+        .setTimestamp();
     
         message.channel.send({ embeds: [embedPrompt] }).then(async msg => {
  
@@ -69,7 +70,8 @@ module.exports.run = async (bot, message, args) => {
                     if (err) return message.channel.send(`Er is iets fout gegaan.`);
                 });
 
-                message.channel.send({embeds: [embed]});
+                message.channel.send({embeds: [embed]})
+                banUser.send({embeds: [embedUser] });
 
             } else if (emojiDetails.emoji.name === "❌") {
 
