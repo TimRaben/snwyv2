@@ -89,7 +89,7 @@ module.exports.run = async (bot, message, args) => {
                     if (err) return message.channel.send(`Er is iets fout gegaan.`);
                 });
 
-                message.channel.send({embeds: embed});
+                message.channel.send({embeds: [embed]});
 
             } else if (emojiDetails.emoji.name === "❌") {
 
