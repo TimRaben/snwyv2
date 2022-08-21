@@ -19,8 +19,6 @@ module.exports.run = async (bot, message, args) => {
 
     var reason = args.slice(1).join(" ");
 
-    var datum = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
-
     var embedPrompt = new discord.MessageEmbed()
         .setColor("GREEN")
         .setTitle("Gelieve te reageren binnen 30 Seconde...")
