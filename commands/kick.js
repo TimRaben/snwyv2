@@ -29,14 +29,7 @@ module.exports.run = async (bot, message, args) => {
         .setDescription(`**Gekickt:** ${kickUser}\n**Stafflid:** ${message.author}\n**Reden:** ${reason}\n\n**Snwy Discord - Moderatie**`)
         .setTimestamp();
 
-    message.channel.send({ embeds: [embedPrompt] }).then(async msg => {
- 
-        let authorID = message.author.id;
-        let time = 30;
-        let reactions = ["✅", "❌"];
-         
-            // We gaan eerst de tijd * 1000 doen zodat we seconden uitkomen.
-        time *= 1000;
+    
         message.channel.send({ embeds: [embedPrompt] }).then(async msg => {
  
             let authorID = message.author.id;
@@ -99,12 +92,12 @@ module.exports.run = async (bot, message, args) => {
                     message.delete();
                     setTimeout(() => msg.delete(), 5000);
 
-                })
+                });
 
             }
                 
         });
-    });
+    
 
 }
     
