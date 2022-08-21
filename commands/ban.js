@@ -19,6 +19,8 @@ module.exports.run = async (bot, message, args) => {
 
     var reason = args.slice(1).join(" ");
 
+
+
     var embedPrompt = new discord.MessageEmbed()
         .setColor("GREEN")
         .setTitle("Gelieve te reageren binnen 30 Seconde...")
@@ -64,12 +66,12 @@ module.exports.run = async (bot, message, args) => {
 
                 message.delete();
 
-                banUser.kick(reason).catch(err => {
+                banUser.ban({reason: reason}).catch(err => {
                     if (err) return message.channel.send(`Er is iets fout gegaan.`);
                 });
 
                 message.channel.send({embeds: [embed]})
-                banUser.send({embeds: [embedUser] });
+                banUser.send(embedUser);
 
             } else if (emojiDetails.emoji.name === "❌") {
 
