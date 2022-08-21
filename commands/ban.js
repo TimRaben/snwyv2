@@ -3,7 +3,7 @@ const discord = require("discord.js");
 module.exports.run = async (bot, message, args) => {
 
     
-    if (!message.member.permissions.has("KICK_MEMBERS")) return message.reply("Mijn excuses, jij bent niet bevoegd om iemand te kicken!");
+    if (!message.member.permissions.has("KICK_MEMBERS")) return message.reply("Mijn excuses, jij bent niet bevoegd om iemand te bannen!");
 
     if (!message.guild.me.permissions.has("KICK_MEMBERS")) return message.reply("Foutcode: 21");
     
@@ -11,22 +11,22 @@ module.exports.run = async (bot, message, args) => {
 
     if (!args[1]) return message.reply("Gelieve een reden op te geven.");
 
-    var kickUser = message.guild.members.cache.get(message.mentions.users.first().id || message.guild.members.get(args[0]).id)
+    var banUser = message.guild.members.cache.get(message.mentions.users.first().id || message.guild.members.get(args[0]).id)
 
-    if (!kickUser) return message.reply("Gelieve deze persoon kan ik niet vinden.");
+    if (!banUser) return message.reply("Gelieve deze persoon kan ik niet vinden.");
 
-    if (kickUser.permissions.has("MANAGE_MESSAGES")) return message.reply("Je kan je collega's niet kicken.")
+    if (banUser.permissions.has("MANAGE_MESSAGES")) return message.reply("Je kan je collega's niet bannen.")
 
     var reason = args.slice(1).join(" ");
 
     var embedPrompt = new discord.MessageEmbed()
         .setColor("GREEN")
         .setTitle("Gelieve te reageren binnen 30 Seconde...")
-        .setDescription(`Wil je ${kickUser} kicken?`);
+        .setDescription(`Wil je ${kickUser} bannen?`);
 
     var embed = new discord.MessageEmbed()
         .setColor("RED")
-        .setDescription(`**Gekickt:** ${kickUser}\n**Stafflid:** ${message.author}\n**Reden:** ${reason}\n\n**Snwy Discord - Moderatie**`)
+        .setDescription(`**Geband:** ${kickUser}\n**Stafflid:** ${message.author}\n**Reden:** ${reason}\n\n**Snwy Discord - Moderatie**`)
         .setTimestamp();
 
     message.channel.send({ embeds: [embedPrompt] }).then(async msg => {
@@ -85,7 +85,7 @@ module.exports.run = async (bot, message, args) => {
 
                 message.delete();
 
-                kickUser.kick(reason).catch(err => {
+                banUser.ban({reason: reason}).catch(err => {
                     if (err) return message.channel.send(`Er is iets fout gegaan.`);
                 });
 
@@ -95,7 +95,7 @@ module.exports.run = async (bot, message, args) => {
 
                 msg.delete();
 
-                message.channel.send("Kick geannuleerd!").then(msg => {
+                message.channel.send("Ban geannuleerd!").then(msg => {
                     message.delete();
                     setTimeout(() => msg.delete(), 5000);
 
@@ -109,5 +109,5 @@ module.exports.run = async (bot, message, args) => {
 }
     
     module.exports.help = {
-        name: "kick"
+        name: "ban"
     }
