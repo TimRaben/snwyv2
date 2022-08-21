@@ -1,8 +1,8 @@
-const { Client, Intents, Collection } = require("discord.js");
+const { Client, Intents, Collection, Interaction } = require("discord.js");
 const botConfig = require("./botConfig.json");
 const fs = require("fs");
 
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_MESSAGE_REACTIONS]});
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_MESSAGE_REACTIONS] });
 
 client.commands = new Collection();
 
