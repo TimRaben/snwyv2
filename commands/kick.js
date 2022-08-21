@@ -55,24 +55,6 @@ module.exports.run = async (bot, message, args) => {
             msg.awaitReactions({ filter, max: 1, time: time }).then(collected => {
                 var emojiDetails = collected.first();
              
-                    
-            });
-        });
-            // We gaan iedere reactie meegegeven onder de reactie en deze daar plaatsen.
-        for (const reaction of reactions) {
-            await msg.react(reaction);
-        }
-         
-            // Als de emoji de juiste emoji is die men heeft opgegeven en als ook de auteur die dit heeft aangemaakt er op klikt
-            // dan kunnen we een bericht terug sturen.
-        const filter = (reaction, user) => {
-            return reactions.includes(reaction.emoji.name) && user.id === authorID;
-        };
-         
-            // We kijken als de reactie juist is, dus met die filter en ook het aantal keren en binnen de tijd.
-            // Dan kunnen we bericht terug sturen met dat icoontje dat is aangeduid.
-        msg.awaitReactions({ filter, max: 1, time: time }).then(collected => {
-            var emojiDetails = collected.first();
         
             if (emojiDetails.emoji.name === "✅") {
 
@@ -97,6 +79,8 @@ module.exports.run = async (bot, message, args) => {
             }
                 
         });
+    });
+
     
 
 }
