@@ -11,7 +11,7 @@ module.exports.run = async (bot, message, args) => {
 
     if (!args[1]) return message.reply("Gelieve een reden op te geven.");
 
-    var banUser = message.guild.members.cache.get(message.mentions.users.first().id || message.guild.members.get(args[0]).id)
+    var banUser = message.guild.members.cache.get(message.mentions.users.first().id);
 
     if (!banUser) return message.reply("Gelieve deze persoon kan ik niet vinden.");
 
